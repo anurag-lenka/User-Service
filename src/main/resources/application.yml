@@ -5,3 +5,12 @@ spring:
     hibernate:
       ddl-auto: update
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5000ms
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
